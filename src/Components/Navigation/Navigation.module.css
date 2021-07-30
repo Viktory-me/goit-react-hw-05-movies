@@ -16,3 +16,6 @@
   font-weight: 500;
   color: darkgray;
 }
+.nav:hover {
+  box-shadow: inset 0px 5px 3px gray;
+}
