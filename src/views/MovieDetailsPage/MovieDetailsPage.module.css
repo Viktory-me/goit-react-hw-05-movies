@@ -1,0 +1,37 @@
+.containerMovie {
+  display: flex;
+  flex-direction: row;
+  max-width: 1000px;
+  border-radius: 8px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: small;
+  color: rgb(71, 70, 70);
+}
+.posterMovie {
+  display: block;
+  width: 250px;
+  height: 450px;
+  border-radius: 8px;
+}
+.aboutInfo {
+  display: inline-block;
+  padding: 20px 20px 20px 20px;
+}
+.containerMovie:hover {
+  box-shadow: inset 0px 5px 3px gray;
+}
+
+.infoDetails {
+  font-weight: bold;
+  font-size: medium;
+  margin-bottom: 5px;
+}
+.titleMovie {
+  font-size: x-large;
+  text-shadow: 1px 1px 1px gray;
+}

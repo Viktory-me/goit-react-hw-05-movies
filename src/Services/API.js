@@ -11,16 +11,16 @@ export async function fetchPopularMoviesDay(page) {
   return data;
 }
 
-export async function fetchMoviesByName(name, page) {
+export async function fetchMoviesId(movieId) {
   const { data } = await axios.get(
-    `/search/movie?api_key=${Api_Key}&language=en-US&page=1&include_adult=false&query=${name}&page=${page}`
+    `/movie/${movieId}?api_key=${Api_Key}&language=en-US&append_to_response=reviews,credits`
   );
   return data;
 }
 
-export async function fetchMoviesId(movieId) {
+export async function fetchMoviesByName(name, page) {
   const { data } = await axios.get(
-    `/movie/${movieId}?api_key=${Api_Key}&language=en-US&append_to_response=reviews,credits`
+    `/search/movie?api_key=${Api_Key}&language=en-US&page=1&include_adult=false&query=${name}&page=${page}`
   );
   return data;
 }

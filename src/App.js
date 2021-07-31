@@ -5,6 +5,7 @@ import "./App.css";
 import HomePage from "./views/HomePage/HomePage.jsx";
 import MoviesPage from "./views/MoviesPage/MoviesPage.jsx";
 import Container from "./Components/Container/Container.jsx";
+import MovieDetailsPage from "./views/MovieDetailsPage/MovieDetailsPage";
 
 function App() {
   return (
@@ -14,8 +15,11 @@ function App() {
         <Route path='/' exact>
           <HomePage></HomePage>
         </Route>
-        <Route path='/movies'>
+        <Route path='/movies' exact>
           <MoviesPage></MoviesPage>
+        </Route>
+        <Route path='/movies/:movieId'>
+          <MovieDetailsPage />
         </Route>
       </Switch>
       <ToastContainer></ToastContainer>
