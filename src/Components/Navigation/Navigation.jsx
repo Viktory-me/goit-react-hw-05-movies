@@ -7,7 +7,7 @@ const Navigation = () => {
       <NavLink exact to='/' className={s.link} activeClassName={s.activeLink}>
         Home
       </NavLink>
-      <NavLink to='/movies' className={s.link}>
+      <NavLink to='/movies' className={s.link} activeClassName={s.activeLink}>
         Movies
       </NavLink>
     </nav>

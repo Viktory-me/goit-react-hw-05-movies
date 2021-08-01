@@ -1,55 +1,53 @@
 import { useState, useEffect } from "react";
-import { useLocation, useHistory, useRouteMatch } from "react-router-dom";
+
 import { toast } from "react-toastify";
-import { fetchPopularMoviesDay } from "../../Services/API";
+import Loader from "react-loader-spinner";
+import { fetchTrendingMovies } from "../../Services/API";
 import MovieList from "../../Components/MovieList/MovieList";
+
+const Status = {
+  PENDING: "pending",
+  RESOLVED: "resolved",
+  REJECTED: "rejected",
+};
 
 export default function MovieView() {
   const [movies, setMovies] = useState([]);
-  const [page, setPage] = useState(null);
   const [error, setError] = useState("");
-
-  const location = useLocation();
-  const history = useHistory();
-  const { isExact } = useRouteMatch();
-
-  let currentPage = Number(
-    new URLSearchParams(location.search).get("page") || 1
-  );
+  const [status, setStatus] = useState(Status.PENDING);
 
   useEffect(() => {
-    if (!isExact) {
-      history.push("/");
-      toast.dark("🦄Page not found", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
-
-    async function getMovies() {
-      try {
-        const { results, total_pages } = await fetchPopularMoviesDay(
-          currentPage
-        );
-        setMovies(results);
-        setPage(total_pages);
-      } catch (err) {
-        setError(err.message);
+    setStatus(Status.PENDING);
+    fetchTrendingMovies()
+      .then((request) => setMovies(request.results))
+      .then(setStatus(Status.RESOLVED))
+      .catch((err) => {
         console.log(error);
-      }
-    }
-    getMovies();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [currentPage, history, isExact]);
+        setError(Status.REJECTED);
+      });
+  }, [error]);
 
-  return (
-    <>
-      <MovieList movies={movies}></MovieList>
-    </>
-  );
+  if (status === Status.PENDING) {
+    return <Loader />;
+  }
+
+  if (status === Status.REJECTED) {
+    return toast.dark("🦄Page not found", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+
+  if (status === Status.RESOLVED) {
+    return (
+      <>
+        <MovieList movies={movies}></MovieList>
+      </>
+    );
+  }
 }

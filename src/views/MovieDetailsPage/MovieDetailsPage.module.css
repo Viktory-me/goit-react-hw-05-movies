@@ -15,7 +15,7 @@
 .posterMovie {
   display: block;
   width: 250px;
-  height: 450px;
+  height: 350px;
   border-radius: 8px;
 }
 .aboutInfo {
@@ -34,4 +34,25 @@
 .titleMovie {
   font-size: x-large;
   text-shadow: 1px 1px 1px gray;
+}
+.list {
+  list-style: none;
+  padding-left: 0;
+}
+.link {
+  display: inline-block;
+  text-decoration: none;
+  padding-right: 8px;
+  font-weight: 700;
+  color: rgb(71, 70, 70);
+  font-size: 22px;
+}
+.link:hover {
+  color: crimson;
+  cursor: pointer;
+}
+
+.activeLink {
+  composes: link;
+  color: crimson;
 }

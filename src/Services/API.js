@@ -2,6 +2,7 @@ import axios from "axios";
 const Base_Url = "https://api.themoviedb.org/3";
 const Api_Key = "febbe388fd385fbc8b7d8be3042ab312";
 export const POSTER_URL = "https://image.tmdb.org/t/p/w500";
+const TREND_URL = `${Base_Url}/trending/movie/day?api_key=${Api_Key}`;
 
 axios.defaults.baseURL = Base_Url;
 
@@ -17,24 +18,24 @@ export function fetchMovieCast(id) {
     `${Base_Url}/movie/${id}/credits?api_key=${Api_Key}&language=en-US`
   );
 }
-
-export async function fetchPopularMoviesDay(page) {
-  const { data } = await axios.get(
-    `/trending/movie/day?api_key=${Api_Key}&page=${page}`
-  );
-  return data;
+export function fetchTrendingMovies() {
+  return fetchWithErrorHandling(TREND_URL);
 }
 
-export async function fetchMoviesId(movieId) {
-  const { data } = await axios.get(
-    `/movie/${movieId}?api_key=${Api_Key}&language=en-US&append_to_response=reviews,credits`
+export function fetchMoviesByName(name) {
+  return fetchWithErrorHandling(
+    `${Base_Url}/search/movie?api_key=${Api_Key}&query=${name}&language=en-US&page=1&include_adult=false`
   );
-  return data;
 }
 
-export async function fetchMoviesByName(name, page) {
-  const { data } = await axios.get(
-    `/search/movie?api_key=${Api_Key}&language=en-US&page=1&include_adult=false&query=${name}&page=${page}`
+export function fetchMovieDetails(id) {
+  return fetchWithErrorHandling(
+    `${Base_Url}/movie/${id}?api_key=${Api_Key}&language=en-US`
   );
-  return data;
+}
+
+export function fetchMovieReviews(id) {
+  return fetchWithErrorHandling(
+    `${Base_Url}/movie/${id}/reviews?api_key=${Api_Key}&language=en-US`
+  );
 }

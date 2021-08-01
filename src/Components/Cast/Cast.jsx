@@ -8,6 +8,7 @@ export default function Cast({ movieId }) {
 
   useEffect(() => {
     fetchMovieCast(movieId).then((request) => setCast(request.cast));
+    window.scrollTo({ top: 600, behavior: "smooth" });
   }, [movieId]);
 
   return (

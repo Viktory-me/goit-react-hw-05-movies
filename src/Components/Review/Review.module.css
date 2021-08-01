@@ -1,0 +1,40 @@
+.wrapper {
+  border-radius: 8px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: small;
+  color: rgb(71, 70, 70);
+}
+.wrapper:hover {
+  box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.list {
+  list-style: none;
+}
+
+.title {
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-block-end: 0;
+  margin-block-start: 0;
+}
+
+.text {
+  font-style: italic;
+}
+.titleName {
+  visibility: hidden;
+  margin: 0auto;
+  padding: 0;
+  font-size: 1px;
+}
+.item {
+  border-bottom: 1px solid grey;
+  margin-bottom: 5px;
+}

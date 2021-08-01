@@ -10,7 +10,7 @@ function SearchForm({ onSubmit }) {
     if (moviesName.trim() === "") {
       toast.dark("🦄Please enter search query", {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
