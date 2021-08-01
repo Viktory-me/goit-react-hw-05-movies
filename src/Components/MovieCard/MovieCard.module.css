@@ -14,8 +14,19 @@
 }
 
 .infoMovie {
-  margin-right: 3px;
   color: rgb(59, 59, 59);
+  font-weight: 600;
+}
+.infoMovieRelease {
+  color: crimson;
+}
+.infoMovieRating {
+  background-color: rgba(220, 20, 60, 0.459);
+  color: white;
+  border-radius: 2px;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-bottom: 2px;
 }
 .fullInfo {
   text-align: center;

@@ -1,13 +1,23 @@
 import { useEffect, useState } from "react";
-import { useParams, Redirect } from "react-router-dom";
+import {
+  useParams,
+  Redirect,
+  Switch,
+  Route,
+  NavLink,
+  useRouteMatch,
+} from "react-router-dom";
 import { toast } from "react-toastify";
 import { fetchMoviesId } from "../../Services/API";
 import { Loader } from "react-loader-spinner";
 import s from "./MovieDetailsPage.module.css";
 import noimage from "../../images/noimage.jpg";
+import Cast from "../../Components/Cast/Cast";
+import Reviews from "../../Components/Review/Review";
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
+  const { url, path } = useRouteMatch();
   const [movie, setMovie] = useState(null);
   const [status, setStatus] = useState("idle");
 
@@ -52,6 +62,22 @@ export default function MovieDetailsPage() {
               alt={movie.original_title}
             />
             <div className={s.aboutInfo}>
+              <nav className={s.nav}>
+                <NavLink
+                  to={`${url}/cast`}
+                  className={s.link}
+                  activeClassName={s.activeLink}
+                >
+                  Cast
+                </NavLink>
+                <NavLink
+                  to={`${url}/reviews`}
+                  className={s.link}
+                  activeClassName={s.activeLink}
+                >
+                  Reviews
+                </NavLink>
+              </nav>
               <h2 className={s.titleMovie}>{movie.original_title}</h2>
 
               <p>
@@ -73,8 +99,16 @@ export default function MovieDetailsPage() {
           </div>
         </>
       )}
-
       {status === "rejected" && <Redirect to='/' />}
+      <Switch>
+        <Route path={`${path}:movieId/cast`}>
+          <Cast movieId={movieId} />
+        </Route>
+
+        <Route path={`${path}:movieId/reviews`}>
+          <Reviews movieId={movieId} />
+        </Route>
+      </Switch>
     </>
   );
 }

@@ -1,0 +1,45 @@
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px 10px;
+  border-radius: 8px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: small;
+  color: rgb(71, 70, 70);
+}
+.list:hover {
+  box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+.item {
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  list-style: none;
+  text-decoration: none;
+  overflow: hidden;
+}
+.item:hover {
+  box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+.image {
+  height: 200px;
+  object-fit: cover;
+}
+.wrapper {
+  padding: 10px;
+}
+h3 {
+  margin: 0 auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+h4 {
+  margin: 0 auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}

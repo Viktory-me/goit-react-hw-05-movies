@@ -33,10 +33,11 @@ function MovieCard({
         <div className={s.fullInfo}>
           <span className={s.infoMovie}>
             {title ? title : original_name} |{" "}
-            {release_date ? parseInt(release_date) : ""}
           </span>
-
-          <span className={s.infoMovie}>{vote_average}</span>
+          <span className={s.infoMovieRelease}>
+            {release_date ? parseInt(release_date) : ""}
+          </span>{" "}
+          <span className={s.infoMovieRating}>{vote_average}</span>
         </div>
       </Link>
     </li>

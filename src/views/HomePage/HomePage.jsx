@@ -6,7 +6,7 @@ import MovieList from "../../Components/MovieList/MovieList";
 
 export default function MovieView() {
   const [movies, setMovies] = useState([]);
-  const [pages, setPages] = useState(null);
+  const [page, setPage] = useState(null);
   const [error, setError] = useState("");
 
   const location = useLocation();
@@ -37,14 +37,19 @@ export default function MovieView() {
           currentPage
         );
         setMovies(results);
-        setPages(total_pages);
+        setPage(total_pages);
       } catch (err) {
         setError(err.message);
+        console.log(error);
       }
     }
     getMovies();
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage, history, isExact]);
 
-  return <MovieList movies={movies}></MovieList>;
+  return (
+    <>
+      <MovieList movies={movies}></MovieList>
+    </>
+  );
 }
