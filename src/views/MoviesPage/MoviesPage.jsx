@@ -1,22 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import SearchForm from "../../Components/SearchForm/SearchForm";
-import { fetchMoviesByName } from "../../Services/API";
+import MovieSearch from "../../Components/MovieSearch/MovieSearch.jsx";
 
 export default function MoviesPage() {
-  const [movies, setMovies] = useState([]);
-  const [pages, setPages] = useState(0);
-  const [error, setError] = useState("");
-
   const history = useHistory();
   const location = useLocation();
+  const [movieName, setMovieName] = useState("");
+  const [movies, setMovies] = useState([]);
 
-  //   useEffect(() => {
-  //     fetchMoviesByName;
-  //   });
+  const queryURL = new URLSearchParams(location.search).get("query");
+
+  const onQueryChange = (query) => {
+    history.push({ ...location, search: `query=${query}` });
+  };
+
+  const onSubmit = (name) => {
+    setMovieName(name);
+    setMovies([]);
+    onQueryChange(name);
+  };
+
   return (
     <>
-      <SearchForm></SearchForm>
+      <SearchForm onSubmit={onSubmit}></SearchForm>
+      <MovieSearch movieName={movieName} queryURL={queryURL} />
     </>
   );
 }

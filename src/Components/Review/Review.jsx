@@ -8,6 +8,7 @@ export default function Reviews({ movieId }) {
 
   useEffect(() => {
     fetchMovieReviews(movieId).then((request) => setReviews(request.results));
+    window.scrollTo({ top: 600, behavior: "smooth" });
   }, [movieId]);
 
   return (

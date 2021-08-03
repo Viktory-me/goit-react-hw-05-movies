@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { useEffect, useState } from "react";
 import {
   useParams,
@@ -6,15 +7,17 @@ import {
   NavLink,
   useRouteMatch,
 } from "react-router-dom";
-import Loader from "react-loader-spinner";
 import { toast } from "react-toastify";
 import { fetchMovieDetails, POSTER_URL } from "../../Services/API";
-
 import s from "./MovieDetailsPage.module.css";
+import Spinner from "../../Components/Loader/Loader";
 
-import Cast from "../../Components/Cast/Cast";
-import Reviews from "../../Components/Review/Review";
-
+const Cast = lazy(() =>
+  import("../../Components/Cast/Cast" /* webpackChunkName: "Cast" */)
+);
+const Reviews = lazy(() =>
+  import("../../Components/Review/Review" /* webpackChunkName: "Review" */)
+);
 const Status = {
   PENDING: "pending",
   RESOLVED: "resolved",
@@ -40,7 +43,7 @@ export default function MovieDetailsPage() {
   }, [movieId, error]);
 
   if (status === Status.PENDING) {
-    return <Loader />;
+    return <Spinner></Spinner>;
   }
   if (status === Status.REJECTED) {
     return toast.dark("🦄Page not found", {
@@ -104,16 +107,17 @@ export default function MovieDetailsPage() {
             </div>
           </div>
         </div>
+        <Suspense fallback={<Spinner></Spinner>}>
+          <Switch>
+            <Route path={`${path}:movieId/cast`}>
+              <Cast movieId={movieId} />
+            </Route>
 
-        <Switch>
-          <Route path={`${path}:movieId/cast`}>
-            <Cast movieId={movieId} />
-          </Route>
-
-          <Route path={`${path}:movieId/reviews`}>
-            <Reviews movieId={movieId} />
-          </Route>
-        </Switch>
+            <Route path={`${path}:movieId/reviews`}>
+              <Reviews movieId={movieId} />
+            </Route>
+          </Switch>
+        </Suspense>
       </>
     );
   }

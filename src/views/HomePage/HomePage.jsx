@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-
 import { toast } from "react-toastify";
-import Loader from "react-loader-spinner";
 import { fetchTrendingMovies } from "../../Services/API";
 import MovieList from "../../Components/MovieList/MovieList";
+import Spinner from "../../Components/Loader/Loader";
 
 const Status = {
   PENDING: "pending",
@@ -28,7 +27,7 @@ export default function MovieView() {
   }, [error]);
 
   if (status === Status.PENDING) {
-    return <Loader />;
+    return <Spinner></Spinner>;
   }
 
   if (status === Status.REJECTED) {

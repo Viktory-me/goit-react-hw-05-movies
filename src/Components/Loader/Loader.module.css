@@ -1,0 +1,9 @@
+.overlay {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.spin {
+  margin: 0 auto;
+  color: rgba(220, 20, 60, 0.466);
+}
