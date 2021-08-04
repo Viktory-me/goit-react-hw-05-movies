@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { fetchMoviesByName } from "../../Services/API";
+import { GoBackBtn } from "../GoBackBtn/GoBackBtn";
 import Spinner from "../Loader/Loader";
 import MovieList from "../MovieList/MovieList";
 
@@ -12,7 +13,7 @@ const Status = {
 };
 
 export default function FilmsStatus({ movieName, queryURL }) {
-  const [error, setError] = useState({});
+  const [error] = useState({});
   const [status, setStatus] = useState(Status.IDLE);
   const [movies, setMovies] = useState([]);
 
@@ -73,6 +74,7 @@ export default function FilmsStatus({ movieName, queryURL }) {
   if (status === Status.RESOLVED) {
     return (
       <>
+        <GoBackBtn></GoBackBtn>
         <MovieList movies={movies} />
       </>
     );

@@ -11,12 +11,11 @@ import { toast } from "react-toastify";
 import { fetchMovieDetails, POSTER_URL } from "../../Services/API";
 import s from "./MovieDetailsPage.module.css";
 import Spinner from "../../Components/Loader/Loader";
+import { GoBackBtn } from "../../Components/GoBackBtn/GoBackBtn";
 
-const Cast = lazy(() =>
-  import("../../Components/Cast/Cast" /* webpackChunkName: "Cast" */)
-);
+const Cast = lazy(() => import("../Cast/Cast" /* webpackChunkName: "Cast" */));
 const Reviews = lazy(() =>
-  import("../../Components/Review/Review" /* webpackChunkName: "Review" */)
+  import("../Review/Review" /* webpackChunkName: "Review" */)
 );
 const Status = {
   PENDING: "pending",
@@ -59,6 +58,7 @@ export default function MovieDetailsPage() {
   if (status === Status.RESOLVED) {
     return (
       <>
+        <GoBackBtn></GoBackBtn>
         <div className={s.containerMovie}>
           <img
             className={s.posterMovie}
