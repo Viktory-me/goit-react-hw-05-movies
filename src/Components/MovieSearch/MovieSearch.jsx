@@ -62,7 +62,7 @@ export default function FilmsStatus({ movieName, queryURL }) {
   if (status === Status.REJECTED) {
     return toast.dark("🦄Page not found", {
       position: "top-center",
-      autoClose: 5000,
+      autoClose: 3200,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
