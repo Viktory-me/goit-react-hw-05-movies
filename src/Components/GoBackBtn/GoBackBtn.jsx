@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 
 export function GoBackBtn() {
   const history = useHistory();
-  // const location = useLocation();
 
   const onClickBtn = () => {
     history.goBack();
