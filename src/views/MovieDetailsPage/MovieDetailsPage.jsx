@@ -58,7 +58,7 @@ export default function MovieDetailsPage() {
   if (status === Status.RESOLVED) {
     return (
       <>
-        <GoBackBtn></GoBackBtn>
+        <GoBackBtn />
         <div className={s.containerMovie}>
           <img
             className={s.posterMovie}

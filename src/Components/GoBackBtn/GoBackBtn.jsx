@@ -1,12 +1,12 @@
 import s from "./GoBackBtn.module.css";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export function GoBackBtn() {
   const history = useHistory();
-  const location = useLocation();
+  // const location = useLocation();
 
   const onClickBtn = () => {
-    history.push(location?.state?.from ?? "/");
+    history.goBack();
   };
 
   return (
